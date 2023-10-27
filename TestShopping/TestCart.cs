@@ -1,4 +1,6 @@
 using Shopping;
+using static Shopping.Cart;
+using static Shopping.CartItem;
 
 namespace TestShopping
 {
@@ -204,6 +206,48 @@ namespace TestShopping
 
             //then
             Assert.That(_cart.MostExpensive(), Is.EqualTo(10));
+        }
+
+        [Test]
+        public void ApplyDiscountById_ArticleExists_PriceUpdated()
+        {
+            //given
+            float discountToApply = 0.1f;
+            int articleIdToApplyDiscount = 2;
+            List<Article> articles = ArticleGenerator.Generate(5);
+            List<CartItem> cartItems = new List<CartItem>();
+            foreach (Article article in articles)
+            {
+                cartItems.Add(new CartItem(article, 1));
+            }
+            _cart.Add(cartItems);
+
+            //when
+            _cart.ApplyDiscountById(discountToApply, articleIdToApplyDiscount);
+
+            //then
+            Assert.That(_cart.Price(), Is.EqualTo(29.60f));
+        }
+
+        [Test]
+        public void ApplyDiscountById_ArticleDoesNotExist_ThrowException()
+        {
+            //given
+            float discountToApply = 0.1f;
+            int articleIdToApplyDiscount = 45;
+            List<Article> articles = ArticleGenerator.Generate(5);
+            List<CartItem> cartItems = new List<CartItem>();
+            foreach (Article article in articles)
+            {
+                cartItems.Add(new CartItem(article, 1));
+            }
+            _cart.Add(cartItems);
+
+            //when
+            Assert.Throws<ArticleNotFoundException>(() => _cart.ApplyDiscountById(discountToApply, articleIdToApplyDiscount));
+
+            //then
+            //throws exception
         }
     }
 }

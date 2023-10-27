@@ -79,6 +79,21 @@
             }
             return currentChepeastArticleId;
         }
+
+        public void ApplyDiscountById(float percentageDiscount, int articleIdToApplyDiscount)
+        {
+            if(!this.DoesExist(articleIdToApplyDiscount))
+            {
+                throw new ArticleNotFoundException();
+            }
+            foreach (CartItem cartItem in _cartItems)
+            {
+                if (cartItem.Article.Id == articleIdToApplyDiscount)
+                {
+                    cartItem.Article.Price = cartItem.Article.Price - (cartItem.Article.Price * percentageDiscount);
+                }
+            }
+        }
         #endregion public methods
 
         #region private methods
@@ -94,5 +109,8 @@
             return null;
         }
         #endregion private methods
+
+        public class CartException : Exception { }
+        public class ArticleNotFoundException : CartException { }
     }
 }

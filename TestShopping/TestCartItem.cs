@@ -20,7 +20,7 @@ namespace TestShopping
         }
 
         [Test]
-        public void AllProperties_AfterInstantiation_Success()
+        public void AllProperties_AfterInstantiationDefaultValue_GetValues()
         {
             //given
             //refer to Setup
@@ -32,6 +32,22 @@ namespace TestShopping
             //then
             Assert.That(_cartItem.Article.Price, Is.EqualTo(_price));
             Assert.That(_cartItem.Quantity, Is.EqualTo(_quantity));
+            Assert.IsFalse(_cartItem.ForAdultOnly);
+        }
+
+        [Test]
+        public void AllProperties_AfterInstantiationWithForAdultOnlyOption_GetTrue()
+        {
+            //given
+            //refer to Setup
+
+            //when
+            _cartItem.ForAdultOnly = true;
+
+            //then
+            Assert.That(_cartItem.Article.Price, Is.EqualTo(_price));
+            Assert.That(_cartItem.Quantity, Is.EqualTo(_quantity));
+            Assert.IsTrue(_cartItem.ForAdultOnly);
         }
 
         [Test]

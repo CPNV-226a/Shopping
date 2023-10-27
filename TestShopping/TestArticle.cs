@@ -109,5 +109,57 @@ namespace TestShopping
             //throws exception
         }
         #endregion Description
+
+        #region Price
+        /*
+         * A article price must meet theses specifications:
+         *  * Only positive value
+         *  * When updating the price:
+         *      * only a price reduction is tolerated.
+         *      * the new price must be different from the current one.
+         */
+
+        //TODO add test case for constructor
+
+        [Test]
+        public void Price_UpdatePrice_GetNewValue()
+        {
+            //given
+            float expectedNewPrice = 22.0f;
+
+            //when
+            _article.Price = expectedNewPrice;
+
+            //then
+            Assert.That(_article.Price, Is.EqualTo(expectedNewPrice));
+        }
+
+        [Test]
+        public void Price_UpdatePriceWithNegativeValue_ThrowException()
+        {
+            //given
+            float expectedNewPrice = -22.0f;
+
+            //when
+            Assert.Throws<WrongPriceException>(() => _article.Price = expectedNewPrice);
+
+            //then
+            //throws exception
+        }
+
+        [Test]
+        public void Price_UpdatePriceWithSameValueAsCurrent_ThrowException()
+        {
+            //given
+            //refer to setup method
+
+            //when
+            Assert.Throws<WrongPriceException>(() => _article.Price = _price);
+
+            //then
+            //throws exception
+        }
+
+        #endregion Price
     }
 }

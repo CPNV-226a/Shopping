@@ -43,6 +43,14 @@
             {
                 return _price;
             }
+            set
+            {
+                if(value == _price || value < 0f)
+                {
+                    throw new WrongPriceException();
+                }
+                _price = value;
+            }
         }
         #endregion public methods
 
@@ -80,5 +88,6 @@
         public class TooShortDescriptionException : ArticleException { }
         public class SpecialCharInDescriptionException : ArticleException { }
         public class TooLongDescriptionException : ArticleException { }
+        public class WrongPriceException : ArticleException { }
     }
 }
