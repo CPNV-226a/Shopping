@@ -45,9 +45,14 @@
             }
         }
 
-        public override string ToString()
+        public string ToString(bool withPrice = true)
         {
-            throw new NotImplementedException();
+            string articleToString = "Votre article [id " + _id + "] [description " + _description + "]";
+            if(withPrice)
+            {
+                articleToString += " [prix " + _price + "]";
+            }
+            return articleToString;
         }
         #endregion public methods
 

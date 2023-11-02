@@ -30,6 +30,10 @@
             }
             set
             {
+                if (value == _quantity)
+                {
+                    throw new UpdateQuantityException();
+                }
                 if (value < 1)
                 {
                     throw new WrongQuantityException();
@@ -41,5 +45,6 @@
 
         public class CartItemException : Exception { }
         public class WrongQuantityException : CartItemException { }
+        public class UpdateQuantityException : CartItemException { }
     }
 }

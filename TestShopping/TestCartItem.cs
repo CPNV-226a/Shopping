@@ -59,5 +59,20 @@ namespace TestShopping
             //then
             //throws exception
         }
+
+        [Test]
+        public void SetQuantity_SameValueAsCurrentValue_ThrowException()
+        {
+            //given
+            int expectedQuantity = 1;
+
+            //when
+            Assert.Throws<UpdateQuantityException>(() => _cartItem.Quantity = expectedQuantity);
+
+            //then
+            //throws exception
+        }
+
+
     }
 }

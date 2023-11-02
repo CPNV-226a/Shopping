@@ -79,6 +79,30 @@
             }
             return currentChepeastArticleId;
         }
+
+        public List<CartItem> GetCartItemsByMinPrice(float minPrice)
+        {
+            if(_cartItems.Count == 0)
+            {
+                throw new EmptyCartException();
+            }
+
+            List<CartItem> cartItemsByPrice = new List<CartItem>();
+
+            foreach(CartItem cartItem in _cartItems)
+            {
+                if(cartItem.Article.Price >= minPrice)
+                {
+                    cartItemsByPrice.Add(cartItem);
+                }
+            }
+
+            if(cartItemsByPrice.Count == 0)
+            {
+                return null;
+            }
+            return cartItemsByPrice;
+        }
         #endregion public methods
 
         #region private methods
@@ -94,5 +118,8 @@
             return null;
         }
         #endregion private methods
+
+        public class CartException : Exception { }
+        public class EmptyCartException : CartException { }
     }
 }

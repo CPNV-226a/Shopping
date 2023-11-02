@@ -1,4 +1,6 @@
 using Shopping;
+using static Shopping.Cart;
+using static Shopping.CartItem;
 
 namespace TestShopping
 {
@@ -204,6 +206,58 @@ namespace TestShopping
 
             //then
             Assert.That(_cart.MostExpensive(), Is.EqualTo(10));
+        }
+
+        [Test]
+        public void GetCartItemsByMinPrice_ItemsFound_GetListOfItems()
+        {
+            //given
+            int expectedAmountOfArticleItemsFound = 6;
+            List<Article> articles = ArticleGenerator.Generate(10);
+            List<CartItem> cartItems = new List<CartItem>();
+            foreach (Article article in articles)
+            {
+                cartItems.Add(new CartItem(article, 1));
+            }
+            _cart.Add(cartItems);
+
+            List<CartItem> expectedListOfCartItem = new List<CartItem>();
+
+            //when
+
+
+            //then
+            Assert.AreEqual(expectedAmountOfArticleItemsFound, _cart.GetCartItemsByMinPrice(10.00f).Count);
+        }
+
+        [Test]
+        public void GetCartItemsByPrice_NoItemNotFound_GetNull()
+        {
+            //given
+            List<Article> articles = ArticleGenerator.Generate(10);
+            List<CartItem> cartItems = new List<CartItem>();
+            foreach (Article article in articles)
+            {
+                cartItems.Add(new CartItem(article, 1));
+            }
+            _cart.Add(cartItems);
+
+            //when
+
+            //then
+            Assert.AreEqual(null, _cart.GetCartItemsByMinPrice(10000.00f));
+        }
+
+        [Test]
+        public void GetCartItemsByPrice_EmptyCart_ThrowException()
+        {
+            //given
+
+            //when
+            Assert.Throws<EmptyCartException>(() => _cart.GetCartItemsByMinPrice(10000.00f));
+
+            //then
+            //throws exception
         }
     }
 }

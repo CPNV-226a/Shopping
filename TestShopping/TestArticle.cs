@@ -109,7 +109,7 @@ namespace TestShopping
         }
 
         [Test]
-        public void ToString_NominalCase_GetArticleInStringFormat()
+        public void ToString_WithPrice_GetArticleInStringFormat()
         {
             //given
             string expectedString = "Votre article [id " + _id + "] [description " + _description + "] [prix " + _price + "]";
@@ -118,6 +118,18 @@ namespace TestShopping
 
             //then
             Assert.AreEqual(expectedString, _article.ToString());
+        }
+
+        [Test]
+        public void ToString_WithoutPrice_GetArticleInStringFormat()
+        {
+            //given
+            string expectedString = "Votre article [id " + _id + "] [description " + _description + "]";
+
+            //when
+
+            //then
+            Assert.AreEqual(expectedString, _article.ToString(false));
         }
         #endregion Description
     }
