@@ -73,5 +73,41 @@ Soit vous utilisez git pour passer d'une branche à l'autre, soit vous pouvez vo
 
 * [Ouvrir une issue](https://github.com/CPNV-226a/Shopping/issues)
 
+<<<<<<< Updated upstream
 ## License
 [LICENCE](./LICENCE)
+=======
+* Un environnement de développement Visual Studio 2022 Entreprise.
+* Tout le code produit durant le cours.
+* Le réseau est exclu (excepté pour la première compilation) tout comme le travail collaboratif.
+* 45 minutes.
+
+### Livrables attendus
+* Une archive compressée contenant **uniquement** les trois classes métiers (Article.cs, CartItem.cs et Cart.cs).
+
+* Le nommage de l'archive : <nomDeFamille_TDD>.zip.
+
+* Les modalités de livraison spécifiques sont à définir avec votre animateur/trice.
+
+### Evaluation
+
+*Généralités*
+* Vous devez réussir à passer les tests qui sont actuellement en erreur.
+* Ne pas déstabiliser les tests actuels.
+* Les valeurs retournées par les classes métiers doivent être calculées (pas de retour codé en dur)
+
+*Qualité du livrabe*
+* Respect des consignes de livraison.
+* Respect des principes POO.
+* Les classes de tests ne doivent pas avoir subi aucune modification.
+
+**Notation**
+
+    Note = (nbPointsObtenus/nbPointsMax)/5+1
+
+**Auteur**
+
+Nicolas Glassey
+
+27-OCT-2023
+>>>>>>> Stashed changes
