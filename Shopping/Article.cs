@@ -44,6 +44,11 @@
                 return _price;
             }
         }
+
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
         #endregion public methods
 
         #region private methods

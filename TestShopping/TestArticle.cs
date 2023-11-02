@@ -107,6 +107,18 @@ namespace TestShopping
             //then
             //throws exception
         }
+
+        [Test]
+        public void ToString_NominalCase_GetArticleInStringFormat()
+        {
+            //given
+            string expectedString = "Votre article [id " + _id + "] [description " + _description + "] [prix " + _price + "]";
+
+            //when
+
+            //then
+            Assert.AreEqual(expectedString, _article.ToString());
+        }
         #endregion Description
     }
 }
