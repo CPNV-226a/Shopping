@@ -1,6 +1,5 @@
 using Shopping;
 using static Shopping.Article;
-using static Shopping.CartItem;
 
 namespace TestShopping
 {
