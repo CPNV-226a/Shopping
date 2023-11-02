@@ -11,14 +11,16 @@
         #region public methods
         public Article(int id, string description, float price)
         {
-            throw new NotImplementedException();
+            _id = id;
+            _description = description;
+            _price = price;
         }
 
         public int Id
         {
             get
             {
-                throw new NotImplementedException();
+                return _id;
             }
         }
 
@@ -26,11 +28,12 @@
         {
             get
             {
-                throw new NotImplementedException();
+                return _description;
             }
             set
             {
-                throw new NotImplementedException();
+                CheckDescription(value);
+                _description = value;
             }
         }
 
@@ -38,10 +41,40 @@
         {
             get
             {
-                throw new NotImplementedException();
+                return _price;
             }
         }
         #endregion public methods
+
+        #region private methods
+        private bool CheckDescription(string descriptionToCheck)
+        {
+            char[] specialChars = { '!', '*', '+', '/' };
+            bool find = false;
+            foreach (char specialChar in specialChars)
+            {
+                if (descriptionToCheck.Contains(specialChar))
+                {
+                    find = true;
+                }
+            }
+            if (find)
+            {
+                throw new SpecialCharInDescriptionException();
+            }
+
+            if (descriptionToCheck.Split(' ').Length == 1)
+            {
+                throw new TooShortDescriptionException();
+            }
+
+            if(descriptionToCheck.Length > 50)
+            {
+                throw new TooLongDescriptionException();
+            }
+            return true;
+        }
+        #endregion private methods
 
         public class ArticleException : Exception { }
         public class TooShortDescriptionException : ArticleException { }

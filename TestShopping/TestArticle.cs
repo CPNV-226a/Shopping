@@ -44,6 +44,8 @@ namespace TestShopping
          *  * Max 50 chars (blank spaces count)
          */
 
+        //TODO add test case for constructor
+
         [Test]
         public void Description_ShortDescription_ReturnNewValue()
         {

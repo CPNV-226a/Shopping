@@ -9,7 +9,7 @@
         #region public methods
         public void Add(List<CartItem> cartItems)
         {
-            throw new NotImplementedException();
+            _cartItems = cartItems;
         }
 
         public void Remove(List<CartItem> cartItemsToRemove)
@@ -21,29 +21,78 @@
         {
             get
             {
-                throw new NotImplementedException();
+                return _cartItems;
             }
         }
 
         public float Price(bool average = false)
         {
-            throw new NotImplementedException();
+            float currentCartPrice = 0f;
+            foreach(CartItem cartItem in _cartItems)
+            {
+                currentCartPrice += cartItem.Article.Price * cartItem.Quantity;
+            }
+
+            if (average)
+            {
+                return currentCartPrice / _cartItems.Count;
+            }
+            return currentCartPrice;
         }
 
         public bool DoesExist(int articleId)
         {
-            throw new NotImplementedException();
+            foreach (CartItem cartItem in _cartItems) 
+            {
+                if (cartItem.Article.Id == articleId)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public int Cheapest()
         {
-            throw new NotImplementedException();
+            //TODO Reflexion, order the list and get the first one ?
+            int currentChepeastArticleId = _cartItems[0].Article.Id;
+            foreach (CartItem cartItem in _cartItems)
+            {
+                if (cartItem.Article.Price < this.GetArticleById(currentChepeastArticleId).Price)
+                {
+                    currentChepeastArticleId = cartItem.Article.Id;
+                }
+            }
+            return currentChepeastArticleId;
         }
 
         public int MostExpensive()
         {
-            throw new NotImplementedException();
+            //TODO Reflexion, order the list and get the first one ?
+            int currentChepeastArticleId = _cartItems[0].Article.Id;
+            foreach (CartItem cartItem in _cartItems)
+            {
+                if (cartItem.Article.Price > this.GetArticleById(currentChepeastArticleId).Price)
+                {
+                    currentChepeastArticleId = cartItem.Article.Id;
+                }
+            }
+            return currentChepeastArticleId;
         }
         #endregion public methods
+
+        #region private methods
+        private Article GetArticleById(int articleId) 
+        {
+            foreach(CartItem cartItem in _cartItems)
+            {
+                if(cartItem.Article.Id == articleId)
+                {
+                    return cartItem.Article;
+                }
+            }
+            return null;
+        }
+        #endregion private methods
     }
 }
