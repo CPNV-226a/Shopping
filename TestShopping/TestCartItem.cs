@@ -72,7 +72,5 @@ namespace TestShopping
             //then
             //throws exception
         }
-
-
     }
 }
